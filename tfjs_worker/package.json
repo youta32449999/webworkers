@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "comlink": "^4.3.0",
     "typescript": "^3.9.5"
   }
 }
