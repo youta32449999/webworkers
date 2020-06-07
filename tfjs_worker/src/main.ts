@@ -24,7 +24,9 @@ async function main(){
         // 背景画像をImageBitmapに変換するoffscreenCanvasを定義&Bitmapを取得
         const backgroundImageToBitmapCanvas = new OffscreenCanvas(width, height);
         const backgroundImageToBitmapContext = backgroundImageToBitmapCanvas.getContext('2d');
-        backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0);
+        if(backgroundImageToBitmapContext !== null){
+            backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0);
+        }
         const backgroundImageBitmap = backgroundImageToBitmapCanvas.transferToImageBitmap();
 
         // 画面表示に使用し、offscreenCanvasにtransferしてworkerへ渡すCanvasを定義
@@ -34,7 +36,7 @@ async function main(){
 
         // workerの定義
         const worker = new Worker('worker.ts');
-        const workerApi = Comlink.wrap(worker);
+        // const workerApi = Comlink.wrap(worker);
 
         // workerへ描画用offscreenCanvasと背景画像のImageBitmapを送信
 
