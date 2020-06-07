@@ -36,9 +36,13 @@ async function main(){
 
         // workerの定義
         const worker = new Worker('worker.ts');
-        // const workerApi = Comlink.wrap(worker);
+        const workerApi: any = await Comlink.wrap(worker);
 
         // workerへ描画用offscreenCanvasと背景画像のImageBitmapを送信
+        await workerApi.init(
+            Comlink.transfer(offscreenCanvas, [offscreenCanvas])
+            , Comlink.transfer(backgroundImageBitmap, [backgroundImageBitmap])
+        );
 
         // videoをImageBitmapへ変換してworkerへ送り続けるアニメーションループ関数を定義
         // アニメーションループ関数を実行
