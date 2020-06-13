@@ -25,7 +25,7 @@ async function main(){
         const backgroundImageToBitmapCanvas = new OffscreenCanvas(width, height);
         const backgroundImageToBitmapContext = backgroundImageToBitmapCanvas.getContext('2d');
         if(backgroundImageToBitmapContext !== null){
-            backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0);
+            backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0, width, height);
         }
         const backgroundImageBitmap = backgroundImageToBitmapCanvas.transferToImageBitmap();
 
