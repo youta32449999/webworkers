@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tensorflow-models/body-pix": "^2.0.5",
+    "@tensorflow/tfjs": "^2.0.0",
     "comlink": "^4.3.0",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
