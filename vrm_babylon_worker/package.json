@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babylonjs/core": "^4.1.0",
+    "@babylonjs/loaders": "^4.1.0",
+    "babylon-vrm-loader": "^1.4.13",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
