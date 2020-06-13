@@ -9,6 +9,8 @@ async function main(){
         // カメラから映像を取得してvideo要素をバックグラウンドで再生
         const cameraStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
         const video = document.createElement('video') as HTMLVideoElement;
+        video.width = width;
+        video.height = height;
         video.srcObject = cameraStream;
         await video.play();
 
@@ -25,12 +27,14 @@ async function main(){
         const backgroundImageToBitmapCanvas = new OffscreenCanvas(width, height);
         const backgroundImageToBitmapContext = backgroundImageToBitmapCanvas.getContext('2d');
         if(backgroundImageToBitmapContext !== null){
-            backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0);
+            backgroundImageToBitmapContext.drawImage(backgroundImage, 0, 0, width, height);
         }
         const backgroundImageBitmap = backgroundImageToBitmapCanvas.transferToImageBitmap();
 
         // 画面表示に使用し、offscreenCanvasにtransferしてworkerへ渡すCanvasを定義
         const canvas = document.createElement('canvas') as HTMLCanvasElement;
+        canvas.width = width;
+        canvas.height = height;
         document.body.appendChild(canvas);
         const offscreenCanvas: OffscreenCanvas = canvas.transferControlToOffscreen();
 
@@ -46,6 +50,18 @@ async function main(){
 
         // videoをImageBitmapへ変換してworkerへ送り続けるアニメーションループ関数を定義
         // アニメーションループ関数を実行
+        async function mainLoop(){
+            if(videoToBitmapContext !== null){
+                videoToBitmapContext.drawImage(video, 0, 0, width, height);
+                const videoBitmap = videoToBitmapCanvas.transferToImageBitmap();
+                await workerApi.update(Comlink.transfer(videoBitmap, [videoBitmap]));
+
+                requestAnimationFrame(mainLoop);
+            } else {
+                throw 'Cannot draw video image(reason videoToBitmapContext is null)';
+            }
+        }
+        mainLoop();
     }
 }
 main();
