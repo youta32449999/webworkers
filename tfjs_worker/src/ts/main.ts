@@ -35,7 +35,7 @@ async function main(){
         const offscreenCanvas: OffscreenCanvas = canvas.transferControlToOffscreen();
 
         // workerの定義
-        const worker = new Worker('worker.ts');
+        const worker = new Worker('./worker.ts', {type: 'module'});
         const workerApi: any = await Comlink.wrap(worker);
 
         // workerへ描画用offscreenCanvasと背景画像のImageBitmapを送信
@@ -48,3 +48,4 @@ async function main(){
         // アニメーションループ関数を実行
     }
 }
+main();

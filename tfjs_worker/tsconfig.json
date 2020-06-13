@@ -5,7 +5,5 @@
     "strict": true,
     "lib": ["es6", "dom", "webworker.importscripts"],
     "esModuleInterop": true,
-    "rootDir": "./src/",
-    "outDir": "./dist/"
   }
 }
