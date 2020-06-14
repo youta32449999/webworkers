@@ -36,8 +36,18 @@ async function main() {
 // // Work with HumanoidBone
 //     vrmManager.humanoidBone.leftUpperArm.addRotation(0, 1, 0);
 //
-// // Work with BlendShape(MorphTarget)
-//     vrmManager.morphing('ANGRY', 1.0);
+// //
+
+    /*
+        Work with BlendShape(MorphTarget)
+        ・表情パターン
+          Joy, Angry, Fun, Sorrow, Neutral(全部大文字でないので注意)
+        ・口の形
+          A, I, U, E, O
+        ・目の開度
+          Blink, Blink_L, Blink_R(1.0: 全閉, 0.0: 全開)
+     */
+    vrmManager.morphing('Sorrow', 1.0);
 
     engine.runRenderLoop(function () {
         scene.render();
