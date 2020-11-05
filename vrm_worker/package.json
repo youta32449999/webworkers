@@ -1,0 +1,17 @@
+{
+  "name": "vrm_worker",
+  "version": "1.0.0",
+  "description": "```js // three.jsのImageLoaderをImageBitmapLoaderに変更 // WebWorker内ではImageオブジェクト(DOM)は使えないのでImageBitmapを使用する - var loader = new ImageLoader( this.manager ); + var loader = new ImageBitmapLoader( this.manager ); ```",
+  "main": "vrm_worker.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
+}
